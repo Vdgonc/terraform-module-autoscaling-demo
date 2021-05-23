@@ -1,6 +1,6 @@
 - host: webserver
   become: yes
-  user: {{ user }}
+  user: "{{ user }}"
   gather_facts: no
   pre_tasks:
     - name: update packages
