@@ -6,6 +6,15 @@
     - name: update packages
       raw: apt update && apt upgrade -y
     - name: install python3 packages
-      raw: apt install -y python3 python3-pip
+      raw: apt install -y python3 python3-pip python3-apt
+  vars_files:
+    - vars.yml
+
+
+- hosts: webserver
+  become: yes
+  user: "{{ user }}"
+  roles:
+    - cloudwatch_agent
   vars_files:
     - vars.yml
