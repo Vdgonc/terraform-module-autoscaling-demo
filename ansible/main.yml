@@ -1,4 +1,4 @@
-- host: webserver
+- hosts: webserver
   become: yes
   user: "{{ user }}"
   gather_facts: no
