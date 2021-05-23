@@ -16,5 +16,6 @@
   user: "{{ user }}"
   roles:
     - cloudwatch_agent
+    - apache2
   vars_files:
     - vars.yml
