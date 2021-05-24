@@ -1,0 +1,16 @@
+---
+- name: restart apache2
+  systemd:
+    name: apache2
+    state: restarted
+
+- name: load access_log rotation
+  command: "logrotate -d {{ http_access_log }}"
+
+- name: load error_log rotation
+  command: "logrotate -d {{ http_error_log }}"
+
+- name: reload apache2
+  systemd:
+    name: apache2
+    state: reloaded

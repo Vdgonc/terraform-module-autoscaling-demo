@@ -1,0 +1,11 @@
+---
+- name: reload cwagent
+  command: "{{ cwagent_ctl }} -a fetch-config -m ec2 -c file:{{ cwagent_config_json }}"
+
+- name: reload logrotate
+  command: logrotate -d /etc/logrotate.d/aws-cwa
+
+- name: restart cwagent
+  systemd:
+    name: amazon-cloudwatch-agent
+    state: restarted

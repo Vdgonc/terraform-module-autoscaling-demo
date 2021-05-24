@@ -1,0 +1,8 @@
+---
+cloudwatch_agent_url : "https://s3.amazonaws.com/amazoncloudwatch-agent/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb"
+
+cwagent_workspace: "/opt/aws/amazon-cloudwatch-agent"
+cwagent_config_json : "{{ cwagent_workspace }}/etc/amazon-cloudwatch-agent.json"
+cwagent_log_file : "{{ cwagent_workspace }}/logs/amazon-cloudwatch-agent.log"
+cwagent_ctl: "{{ cwagent_workspace }}/bin/amazon-cloudwatch-agent-ctl"
+

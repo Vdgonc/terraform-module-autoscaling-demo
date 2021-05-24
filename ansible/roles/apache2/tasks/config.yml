@@ -1,0 +1,41 @@
+---
+
+- name: deploy access.log rotation
+  template:
+    src: access_log.j2
+    dest: /etc/logrotate.d/access_log
+  notify:
+    - load access_log rotation
+
+- name: deploy error.log rotation
+  template:
+    src: error_log.j2
+    dest: /etc/logrotate.d/error_log
+  notify:
+    - load error_log rotation
+
+- name: deploy apache2.conf
+  template:
+    src: apache2.conf.j2
+    dest: /etc/apache2/apache2.conf
+
+- name: restart apache2
+  systemd:
+    name: apache2
+    state: restarted
+
+
+- name: enable mod_headers
+  apache2_module:
+    name: headers
+    state: present
+  notify:
+    - reload apache2
+
+
+- name: deploy secuiry.conf
+  template:
+    src: security.conf.j2
+    dest: /etc/apache2/conf-available/security.conf
+  notify:
+    - reload apache2

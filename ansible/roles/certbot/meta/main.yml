@@ -1,0 +1,15 @@
+galaxy_info:
+  author: Vinicius Justino
+  description: Role para configurar certbot em instancias ubuntu
+  license: Apache-2.0
+
+  min_ansible_version: 2.1
+
+
+  platforms:
+  - name: Ubuntu
+    versions:
+      - 20.04
+  galaxy_tags: []
+
+dependencies: []

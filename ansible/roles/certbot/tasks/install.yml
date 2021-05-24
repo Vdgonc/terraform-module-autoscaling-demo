@@ -1,0 +1,27 @@
+---
+
+- name: install snapd
+  apt:
+    name: snapd
+    state: present
+
+- name: enable snapd
+  systemd:
+    name: snapd.socket
+    enabled: yes
+    daemon_reload: yes
+
+
+- name: update snap core
+  shell: snap install core && snap refresh core
+
+- name: install certbot
+  snap:
+    name: certbot
+    classic: true
+
+- name: create certbot symlink
+  file:
+    src: /snap/bin/certbot
+    dest: /usr/bin/certbot
+    state: link

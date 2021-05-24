@@ -1,0 +1,23 @@
+---
+- name: start cloudwatch agent service
+  systemd:
+    name: amazon-cloudwatch-agent
+    state: started
+    enabled: yes
+    daemon_reload: yes
+    
+
+- name: deploy cloudwatch agent log rotation
+  template:
+    src: aws-cwa.j2
+    dest: /etc/logrotate.d/aws-cwa
+  notify:
+    - reload logrotate
+
+- name: deploy cloudwatch agent configuration
+  template:
+    src: amazon-cloudwatch-agent.json.j2
+    dest: "{{ cwagent_config_json }}"
+  notify:
+    - restart cwagent
+    

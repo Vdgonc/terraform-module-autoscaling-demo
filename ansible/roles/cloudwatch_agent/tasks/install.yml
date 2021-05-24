@@ -1,0 +1,11 @@
+---
+
+- name: install dependences
+  apt:
+    name: ["wget", "awscli"]
+    state: latest
+    update_cache: yes
+
+- name: install cloudwatch agent
+  apt:
+    deb: "{{ cloudwatch_agent_url }}"
