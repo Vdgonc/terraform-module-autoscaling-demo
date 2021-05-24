@@ -1,0 +1,12 @@
+---
+
+- name: install certificate
+  shell: "certbot  --apache -n -m {{ cert_email }} -d {{ domain }}  --agree-tos" 
+
+- name: add cronjob for renew certificates
+  cron:
+    name: certbot automatic renew
+    job: certbot renew --quiet --no-self-upgrade
+    minute: "30"
+    hour: "00"
+    user: "root"
